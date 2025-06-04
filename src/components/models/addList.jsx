@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Plus } from 'lucide-react';
+import Spinner from '../../components/ui/spinner'; // Adjust the import path as needed
 import { createTaskList } from '../../services/tasklist'; // Adjust the import path as needed
 
 const AddListModal = ({ open, Close }) => {
   const [listName, setListName] = useState('');
+  const [loading, setLoading] = useState(false);
   const modalRef = useRef(null);
 
   const handleAdd = async () => {
   const trimmedName = listName.trim();
+  setLoading(true);
 
   if (!trimmedName) {
     console.warn("List name cannot be empty.");
@@ -32,7 +35,7 @@ const AddListModal = ({ open, Close }) => {
     console.error("Failed to create task list:", error.message);
     // Optionally: show toast/snackbar to user
   } finally {
-    // setLoading(false); // re-enable button if using loading state
+    setLoading(false); 
   }
 };
 
@@ -70,8 +73,11 @@ const AddListModal = ({ open, Close }) => {
               placeholder="New List"
               className="text-gray-400 flex-1 bg-transparent focus:outline-none"
             />
-            <button onClick={handleAdd}>
-              <Plus className="text-blue-800" />
+            <button className={`w-9 h-9 bg-blue-200 flex flex-col justify-center items-center rounded-full  ${listName==""?"opacity-60 hover:cursor-not-allowed":"opacity-100 hover:cursor-pointer"}`} onClick={handleAdd}>
+              {loading?
+              <div className='w-8 h-8'>
+                <Spinner/>
+                </div>:<Plus className="text-blue-800" />}
             </button>
           </div>
         </div>

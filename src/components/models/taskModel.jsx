@@ -12,11 +12,13 @@ function formatDate(input) {
 }
 const TaskModal = ({open,setOpen,data,listId,allTasks,setAllTasks}) => {
   const d = formatDate(data?.dueDate);
+  const [loading, setLoading] = useState(false);
   const [task, setTask] = useState({ title: data?.title || "", details:data?.description || "" , date:d || "" });
   const handleChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
   const handleSubmit = async () => {
+    setLoading(true);
     const newTask = {
         title: task.title,
         description: task.details,
@@ -42,6 +44,7 @@ const TaskModal = ({open,setOpen,data,listId,allTasks,setAllTasks}) => {
       setTask({ title: '', details: '', date: '2022-12-22' });
       setOpen(false);
     }
+    setLoading(false);
     
     
   };
@@ -98,13 +101,15 @@ const TaskModal = ({open,setOpen,data,listId,allTasks,setAllTasks}) => {
             <div className="flex justify-between">
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center gap-2"
+                className={`px-4 py-2 bg-red-500 text-white rounded-lg flex items-center gap-2 ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+                disabled={loading}
               >
                 <Trash2 className="w-4 h-4" /> Delete
               </button>
               <button
                 onClick={handleSubmit}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                disabled={loading}
+                className={`px-4 py-2 bg-blue-500 text-white rounded-lg ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 Save Task
               </button>

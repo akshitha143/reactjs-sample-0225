@@ -1,12 +1,98 @@
-# React + Vite
+# ✅ TodoTasks – React Firebase Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, responsive task management app that allows users to create multiple task lists and manage tasks with full CRUD functionality. Built with **React.js**, **Firebase**, and **Tailwind CSS**, and deployed on **Vercel**.
 
-Currently, two official plugins are available:
+🌐 **Live Demo**: [Click Here](https://reactjs-sample-0225-git-main-akshitha143s-projects.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 User Authentication (Login/Register)
+- 📝 Create Task Lists
+- ✅ Add, Edit, Complete & Delete Tasks
+- 📌 Task Prioritization & Due Dates
+- 🔄 Real-time Firebase Firestore Integration
+- 🎯 Subcollection-based Data Model
+- 💡 Fully Responsive UI with Tailwind CSS
+
+---
+
+## 🧑‍💻 Tech Stack
+
+| Technology    | Purpose                              |
+|---------------|--------------------------------------|
+| React.js      | Frontend UI                          |
+| Firebase      | Backend: Firestore DB + Auth         |
+| Tailwind CSS  | Styling with utility-first classes   |
+| React Router  | Navigation and routing               |
+| Vercel        | Hosting & continuous deployment      |
+
+---
+
+## 📁 Folder Structure
+
+src/
+├── assets/ # Icons, logos, images
+├── components/ # Reusable components
+│ ├── home/
+│ └── modals/
+├── layouts/ # Layout wrappers
+├── pages/ # Page-level components (Home, Auth)
+├── services/ # Firebase service functions (tasks, auth, etc.)
+├── firebase.js # Firebase config
+├── App.js # Root component with routes
+└── main.jsx # Entry point
+
+
+## 🗂 Firebase Firestore Schema
+
+### Collection: `taskLists`
+
+
+
+taskLists
+    └── {taskListId}
+    ├── title: string
+    ├── description: string
+    ├── createdAt: timestamp
+    ├── updatedAt: timestamp
+    └── tasks (subcollection)
+        └── {taskId}
+        ├── title: string
+        ├── description: string
+        ├── status: "pending" | "in_progress" | "completed"
+        ├── priority: "low" | "medium" | "high"
+        ├── dueDate: timestamp
+        ├── createdAt: timestamp
+        └── updatedAt: timestamp
+
+### Collection: `users`
+
+users
+└── {userId}
+├── name: string
+├── email: string
+└── password: string (hashed recommended)
+
+# 1. Clone the repository
+git clone https://github.com/akshitha143/reactjs-sample-0225.git
+
+# 2. Navigate into the project directory
+cd reactjs-sample-0225
+
+# 3. Install dependencies
+npm install
+# or
+yarn install
+
+# 4. Create a Firebase project and add your config
+# Replace your firebase config inside src/firebase.js
+
+# 5. Run the development server
+npm run dev
+# or
+yarn dev
+
+
+

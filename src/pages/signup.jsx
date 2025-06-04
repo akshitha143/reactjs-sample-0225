@@ -115,7 +115,7 @@ const handelSubmit = async (e) => {
             <button
             onClick={handelSubmit}
             type="submit"
-            className={`w-auto px-12 py-2 text-lg bg-white text-[#1A4A8C] font-semibold rounded hover:bg-gray-100 hover:cursor-pointer`}
+            className={`w-auto px-12 py-2 text-lg bg-white text-[#1A4A8C] font-semibold rounded hover:bg-gray-100 hover:cursor-pointer ${loading ? "bg-white/60 cursor-not-allowed" : ""}`}
           >
             {loading ? 
               <div className="flex items-center justify-center">
