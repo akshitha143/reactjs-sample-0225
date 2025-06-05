@@ -23,6 +23,8 @@ const Login = () => {
       return;
     }
     await loginUser( email, password );
+    localStorage.setItem("user", JSON.stringify({ email }));
+    
     console.log("Logging in with:", { email, password });
     setEmail("");
     setPassword("");
@@ -105,6 +107,7 @@ const Login = () => {
 
           </button>
           </div>
+          <p className="mt-6 text-white text-center">Already have a account <span className=" ml-2 hover:cursor-pointer font-semibold" onClick={()=>{navigate("/signup")}}>signup</span></p>
         </form>
         </>
     </AuthLayout>

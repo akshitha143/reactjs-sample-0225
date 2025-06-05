@@ -25,7 +25,9 @@ const AddListModal = ({ open, Close }) => {
 
     // Attempt to create in Firebase
     const taskListId = await createTaskList({ title: trimmedName,description: "Work on upcoming features" });
-
+    
+    //reload  window
+    window.location.reload();
     // Clear input & close modal
     setListName('');
     Close();

@@ -21,7 +21,7 @@ const Header = () => {
       }
     };
     fetchLogo();
-  }))
+  }),[]);
   return (
     <header className="sticky top-0 left-0 right-0 w-full h-auto bg-[#1A4A8C] shadow-sm px-6 py-3 flex items-center justify-between">
       <div className="flex items-center space-x-3 ">

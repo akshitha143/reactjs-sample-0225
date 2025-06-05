@@ -4,6 +4,7 @@ import Signup from "../pages/signup";
 import HomePage from "../pages/homepage";
 import ErrorPage from "../pages/error";
 import NotFound from "../pages/notfoundpage";
+import { PrivateRoute } from "../components/privateroute";
 export const router = createBrowserRouter([
     {
         path:"/login",
@@ -16,9 +17,19 @@ export const router = createBrowserRouter([
         errorElement:<ErrorPage/>
     },
     {
-        path:"/",
-        element:<HomePage/>,
-        errorElement:<ErrorPage/>
+        element: <PrivateRoute/>,
+        children : [
+            {
+                element: <PrivateRoute />,
+                children :[
+                    {
+                        path:"/",
+                        element:<HomePage/>,
+                        errorElement:<ErrorPage/>
+                    },
+                ]
+                }
+            ]
     },
     {
         path:"*",

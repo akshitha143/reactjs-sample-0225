@@ -4,6 +4,7 @@ import { useTogglePassword } from "../hooks/useTogglePassword";
 import AuthLayout from "../components/layouts/authlayout";
 import { addUser } from "../services/user";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/ui/spinner";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const handelSubmit = async (e) => {
       return;
     }
     await addUser({ name: username, email, password });
+    localStorage.setItem("user", JSON.stringify({ email }));
     setUsername("");
     setEmail("");
     setPassword("");
